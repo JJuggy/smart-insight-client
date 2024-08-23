@@ -2,7 +2,6 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <router-view />
-    <!-- This will render the routed component based on the current route -->
   </div>
 </template>
 

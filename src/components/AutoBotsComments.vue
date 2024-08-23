@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1>AutoBot Posts</h1>
+    <h1>AutoBot Comments</h1>
     <div v-if="loading">Loading...</div>
     <div v-if="error">{{ error }}</div>
     <ul v-if="posts">
-      <router-link :to="{ name: 'AutoBotPosts', params: { id: item.id } }">{{
+      <router-link :to="{ name: 'AutoBotComments', params: { id: item.id } }">{{
         item.name
       }}</router-link>
     </ul>
@@ -14,22 +14,22 @@
 <script>
 import axios from "axios";
 export default {
-  name: "AutoBotPosts",
+  name: "AutoBotComments",
   props: ["id"],
   data() {
     return {
-      posts: null,
+      comments: null,
       loading: true,
       error: null,
     };
   },
   methods: {
-    async fetchPosts() {
+    async fetchComments() {
       this.loading = true;
       try {
-        console.log("fetching posts");
+        console.log("fetching comments");
         const res = await axios.get(
-          `http://localhost:3004/autobots/${this.id}/posts`
+          `http://localhost:3004/posts/${this.id}/comments`
         );
         this.posts = res.data;
       } catch (error) {
@@ -40,7 +40,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchPosts();
+    this.fetchComments();
   },
 };
 </script>
